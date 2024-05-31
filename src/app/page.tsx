@@ -1,113 +1,275 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="">
+      {/* hero section */}
+      <section className="hero-section">
+        <div className="hero min-h-screen ">
+          <div className="hero-content text-center">
+            <div className="max-w-md">
+              <h1 className="text-5xl font-bold">Inspiring the Future of Robotics</h1>
+              <p className="py-6">Explore our portfolio and stay up-to-date with our latest projects.</p>
+              {/* <button className="btn btn-primary">Get Started</button> */}
+            </div>
+          </div>
+          {/* dropdown */}
+          <div className="flex justify-center items-center flex-col w-full absolute bottom-20">
+            <small>Scroll down</small>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-5 h-5 invert ">
+              <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+            </svg>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      {/* projects */}
+      <section className="projects container mx-auto">
+        <h2 className="text-center mb-10 text-5xl">Our Projects</h2>
+        <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+          <li>
+            <div className="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="timeline-start md:text-end mb-10">
+              <div className="flex justify-end w-auto">
+                <Image
+                  alt="obstacle"
+                  src="/obstacle.jpg"
+                  width={500}
+                  height={500}
+                  className="aspect-video rounded-md object-cover opacity-50"
+                />
+              </div>
+              <time className="font-mono italic">01 May 2024</time>
+              <div className="text-lg font-bold">
+                <Link href="">Obstacle Avoiding Robot</Link>
+              </div>
+              The obstacle-avoiding robot is a marvel of engineering, navigating its environment with an uncanny sense
+              of awareness. Equipped with sensors like ultrasonic or infrared, it detects and swiftly avoids obstacles
+              in its path. This autonomous ability makes it ideal for applications like home cleaning, warehouse
+              logistics, and even space exploration, where navigating complex environments is crucial.
+            </div>
+            <hr />
+          </li>
+          <li>
+            <hr />
+            <div className="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="timeline-end mb-10">
+              <div className="flex justify-start w-auto">
+                <Image
+                  alt="line"
+                  src="/line.jpg"
+                  width={500}
+                  height={500}
+                  className="aspect-video rounded-md object-cover opacity-50"
+                />
+              </div>
+              <time className="font-mono italic">01 August 2024</time>
+              <div className="text-lg font-bold">
+                <Link href="">Line Following Robot</Link>
+              </div>
+              The line-following robot, a marvel of simple yet ingenious design, navigates autonomously along a
+              pre-defined path. Equipped with infrared sensors, it detects the contrast between a dark line and a
+              lighter surface, adjusting its direction to stay on track. This versatile robot finds applications in
+              various fields, from automated production lines to educational projects, demonstrating the power of
+              robotics in everyday tasks.
+            </div>
+            <hr />
+          </li>
+          <li>
+            <hr />
+            <div className="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="timeline-start md:text-end mb-10">
+              <div className="flex justify-end w-auto">
+                <Image
+                  alt="self"
+                  src="/self.jpg"
+                  width={500}
+                  height={500}
+                  className="aspect-video rounded-md object-cover opacity-50"
+                />
+              </div>
+              <time className="font-mono italic">06 November 2024</time>
+              <div className="text-lg font-bold">
+                <Link href="">Self Driving Robot Car</Link>
+              </div>
+              The self-driving car, also known as an autonomous vehicle, is revolutionizing transportation. Equipped
+              with an array of sensors, cameras, and powerful computing, these robotic cars can navigate roads, perceive
+              their surroundings, and make driving decisions without human intervention. This technology promises to
+              reduce accidents, increase road efficiency, and offer new mobility options for everyone. While still under
+              development, self-driving cars are poised to transform the way we travel and interact with the world
+              around us.
+            </div>
+            <hr />
+          </li>
+          <li>
+            <hr />
+            <div className="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="timeline-end mb-10">
+              <div className="flex justify-start w-auto">
+                <Image
+                  alt="bluetooth"
+                  src="/bluetooth.jpg"
+                  width={500}
+                  height={500}
+                  className="aspect-video rounded-md object-cover opacity-50"
+                />
+              </div>
+              <time className="font-mono italic">01 January 2025</time>
+              <div className="text-lg font-bold">
+                <Link href="">SmartPhone Controlled Arduino Based Bluetooth Car</Link>
+              </div>
+              Turn your smartphone into a remote control for your very own robot car! This exciting project combines the
+              power of Arduino and Bluetooth, allowing you to steer, accelerate, and even brake your car with just a few
+              taps on your phone. Customize the code and design to create a unique and thrilling experience. Get ready
+              to zoom around and unleash your inner robotics engineer!
+            </div>
+            <hr />
+          </li>
+          <li>
+            <hr />
+            <div className="timeline-middle">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="timeline-start md:text-end mb-10">
+              <div className="flex justify-end w-auto">
+                <Image
+                  alt="soil"
+                  src="/soil.jpg"
+                  width={500}
+                  height={500}
+                  className="aspect-video rounded-md object-cover opacity-50"
+                />
+              </div>
+              <time className="font-mono italic">08 May 2025</time>
+              <div className="text-lg font-bold">
+                <Link href="">Automated plants watering system</Link>
+              </div>
+              Say goodbye to overwatering and wilting plants! Automated plant watering systems use sensors to monitor
+              soil moisture and deliver water only when needed. This innovative technology ensures your plants thrive,
+              even when you're away. Whether you're a busy gardener or simply want to simplify plant care, an automated
+              system is a smart and efficient solution.
+            </div>
+          </li>
+        </ul>
+      </section>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      {/* team_members */}
+      <section className="team_members container mx-auto ">
+        <h2 className="text-center mb-10 text-5xl" id="team-members">
+          Team Members
+        </h2>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        {/* 1st row */}
+        <div className="grid grid-cols-3">
+          {/* team member */}
+          <div className="team_member flex flex-col justify-center items-center">
+            <div className="avatar  ">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
+            <div className="team_members_name"> Anne Marie</div>
+            <div className="team_members_description font-thin italic tracking-wide text-sm font-sans">Engineer</div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+            <div className="team_members_social"></div>
+          </div>
+          {/* team member */}
+          <div className="team_member flex flex-col justify-center items-center">
+            <div className="avatar  ">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
+
+            <div className="team_members_name"> Anne Marie</div>
+            <div className="team_members_description font-thin italic tracking-wide text-sm font-sans">Engineer</div>
+
+            <div className="team_members_social"></div>
+          </div>
+          {/* team member */}
+          <div className="team_member flex flex-col justify-center items-center">
+            <div className="avatar  ">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
+
+            <div className="team_members_name"> Anne Marie</div>
+            <div className="team_members_description font-thin italic tracking-wide text-sm font-sans">Engineer</div>
+
+            <div className="team_members_social"></div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 my-5">
+          {/* team member */}
+          <div className="team_member flex flex-col justify-center items-center">
+            <div className="avatar  ">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
+
+            <div className="team_members_name"> Anne Marie</div>
+            <div className="team_members_description font-thin italic tracking-wide text-sm font-sans">Engineer</div>
+
+            <div className="team_members_social"></div>
+          </div>
+          {/* team member */}
+          <div className="team_member flex flex-col justify-center items-center">
+            <div className="avatar  ">
+              <div className="w-24 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              </div>
+            </div>
+
+            <div className="team_members_name"> Anne Marie</div>
+            <div className="team_members_description font-thin italic tracking-wide text-sm font-sans">Engineer</div>
+
+            <div className="team_members_social"></div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
