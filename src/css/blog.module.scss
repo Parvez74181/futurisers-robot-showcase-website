@@ -1,0 +1,16 @@
+.blog-card-title {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  z-index: 20;
+  margin: 15px 20px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.hero-section-blog-card {
+  &:before {
+    opacity: 0.5 !important;
+  }
+}

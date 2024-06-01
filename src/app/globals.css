@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --background-color: 255, 255, 255;
+  --h2-title-before-color: 0, 0, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
     --background-start-rgb: 0, 52, 52;
     --background-end-rgb: 7, 5, 19;
     --background-color: 7, 5, 19;
+    --h2-title-before-color: 255, 255, 255;
   }
 }
 
@@ -50,20 +52,43 @@ body {
 }
 
 .project-description,
-.card-description-short {
+.card-description {
   overflow: hidden !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: 4 !important;
 }
 
-.card.image-full:before {
-  opacity: 0.4 !important;
+.card-title {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
 }
 
-.card img {
-  transition: 0.3s;
+.h2-title {
+  position: relative;
+  display: inline-block;
 }
-.card-body:hover ~ figure img {
-  scale: 1.1;
+.h2-title::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgb(var(--h2-title-before-color));
+  border-radius: 20px;
+}
+.h2-title::after {
+  content: "";
+  position: absolute;
+  bottom: -12.5px;
+  width: 40%;
+  left: 30%;
+  right: 30%;
+  height: 8px;
+  background: #1e4849;
+  border-radius: 2px;
 }
