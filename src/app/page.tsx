@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className=" -mt-[65px]">
       {/* hero section */}
-      <section className="hero-section">
+      <section className="hero-section ">
         <div className="hero min-h-screen ">
           <div className="hero-content text-center">
             <div className="max-w-md">
@@ -34,10 +34,10 @@ export default function Home() {
       </section>
 
       {/* projects */}
-      <section className="projects container mx-auto">
+      <section className="projects container mx-auto  w-[95%] ">
         <h2 className="h2-title mb-8 text-3xl lg:text-5xl">Our Projects</h2>
         <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical ">
-          <li className="">
+          <li className="animation-appear">
             <div className="timeline-middle">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
                 <path
@@ -47,7 +47,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="timeline-start md:text-end md:mb-10">
+            <div className="timeline-start animation-appear md:text-end md:mb-10">
               <Link href="">
                 <div className="flex md:justify-end w-auto">
                   <Image
@@ -71,7 +71,7 @@ export default function Home() {
             <hr />
           </li>
 
-          <li className="">
+          <li className="animation-appear">
             <hr />
             <div className="timeline-middle">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
@@ -82,7 +82,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="timeline-end md:mb-10">
+            <div className="timeline-end animation-appear md:mb-10">
               <Link href="">
                 <div className="flex justify-start w-auto">
                   <Image
@@ -107,7 +107,7 @@ export default function Home() {
             <hr />
           </li>
 
-          <li className="">
+          <li className="animation-appear">
             <hr />
             <div className="timeline-middle">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
@@ -118,7 +118,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="timeline-start md:text-end md:mb-10">
+            <div className="timeline-start animation-appear md:text-end md:mb-10">
               <Link href="">
                 <div className="flex md:justify-end w-auto">
                   <Image
@@ -144,7 +144,7 @@ export default function Home() {
             <hr />
           </li>
 
-          <li className="">
+          <li className="animation-appear">
             <hr />
             <div className="timeline-middle">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
@@ -155,7 +155,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="timeline-end md:mb-10">
+            <div className="timeline-end animation-appear md:mb-10">
               <Link href="">
                 <div className="flex justify-start w-auto">
                   <Image
@@ -180,7 +180,8 @@ export default function Home() {
             </div>
             <hr />
           </li>
-          <li className="">
+
+          <li className="animation-appear">
             <hr />
             <div className="timeline-middle">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
@@ -191,7 +192,7 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="timeline-start md:text-end md:mb-10">
+            <div className="timeline-start animation-appear md:text-end md:mb-10">
               <Link href="">
                 <div className="flex md:justify-end w-auto">
                   <Image
@@ -219,7 +220,7 @@ export default function Home() {
       </section>
 
       {/* team_members */}
-      <section className="team_members container mx-auto " id="team-members">
+      <section className="team_members container mx-auto w-[95%] " id="team-members">
         <h2 className="h2-title mb-8 text-3xl lg:text-5xl">Team Members</h2>
 
         {/* 1st row */}

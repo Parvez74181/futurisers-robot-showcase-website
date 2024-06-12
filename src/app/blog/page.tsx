@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "@/css/blog.module.scss";
+import styles from "@/styles/blog.module.scss";
 import Card from "@/components/Card";
+import { Post } from "@prisma/client";
 
-const page = () => {
+const page = async () => {
+  const response = await fetch(`${process.env.URL}/api/get-blog`);
+  const result = await response.json();
+  const post: Post[] = result.post;
+
   return (
     <>
       <main className="-mt-[65px]">
@@ -123,8 +128,8 @@ const page = () => {
             Latest Blogs
           </h2>
           <div className="w-full grid grid-cols-1 gap-5 md:gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-            {Array.from({ length: 25 }).map((_, i) => (
-              <Card key={i} />
+            {post.map((post: Post) => (
+              <Card key={`${post.id}`} post={post} />
             ))}
           </div>
         </div>

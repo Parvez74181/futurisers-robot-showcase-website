@@ -1,0 +1,308 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        Int           @id @default(autoincrement())
+  username                  String?       @default("user") @db.VarChar(50)
+  image                     String?       @default("")
+  email                     String        @unique
+  phone                     Int?          @default(0)
+  address                   String?       @default("") @db.VarChar(200)
+  district                  String?       @default("") @db.VarChar(100)
+  thana                     String?       @default("") @db.VarChar(100)
+  password                  String        @db.VarChar(150)
+  dob                       DateTime?     @default(dbgenerated())
+  gender                    String?       @default("") @db.VarChar(10)
+  verificationToken         String?       @default("") @db.VarChar(200)
+  forgetPasswordToken       String?       @default("") @db.VarChar(200)
+  verificationTokenExpiry   DateTime?     @default(dbgenerated())
+  forgetPasswordTokenExpiry DateTime?     @default(dbgenerated())
+  isVerified                Boolean       @default(false)
+  isActive                  Boolean       @default(true)
+  isStaff                   Boolean       @default(false)
+  dateJoined                DateTime      @default(now())
+  reviews                   Review[]
+  carts                     Cart[]
+  orders                    Order[]
+  couponUsage               CouponUsage[]
+  Checkout                  Checkout[]
+  Post                      Post[]
+  BlogComment               BlogComment[]
+
+  @@index([id, username, image, email])
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  image     String?  @default("")
+  slug      String?
+  status    String   @default("published")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([id, name])
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  userId    Int?
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id])
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId, id, comment, rating, productId])
+}
+
+model Product {
+  id              Int      @id @default(autoincrement())
+  name            String
+  image           String?  @default("")
+  video           String?
+  regularPrice    Float
+  actualPrice     Float    @default(0)
+  offerPrice      Float    @default(0)
+  productDetails  String?
+  aboutThisItem   String?
+  warranty        String   @default("no-warranty")
+  status          String   @default("published")
+  productType     String   @default("normal-product")
+  isStock         Boolean  @default(true)
+  userViews       Json?
+  sold            Json?
+  cartAdded       Json?
+  productId       String?  @default(cuid())
+  totalUserViews  Int      @default(0)
+  totalSold       Int      @default(0)
+  totalCartAdded  Int      @default(0)
+  offerPercentage Int      @default(0)
+  slug            String?
+  uuid            String   @default(uuid())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  sizes              Size[]
+  colorFamilies      ColorFamily[]
+  images             Image[]       @relation("ProductImages")
+  suggestedProductId Int?
+  // suggestedProduct   Product?       @relation("SuggestedProducts", fields: [suggestedProductId], references: [id])
+
+  reviews   Review[]
+  CartItem  CartItem[]
+  OrderItem OrderItem[]
+  Coupon    Coupon?     @relation(fields: [couponId], references: [id])
+  couponId  Int?
+
+  @@index([id, name])
+}
+
+model Image {
+  id        Int     @id @default(autoincrement())
+  url       String
+  productId Int
+  product   Product @relation("ProductImages", fields: [productId], references: [id])
+
+  @@map("product_images")
+}
+
+model Cart {
+  id         Int        @id @default(autoincrement())
+  userId     Int
+  uuid       String     @default(cuid())
+  subtotal   Float      @default(0)
+  couponCode String?
+  user       User       @relation(fields: [userId], references: [id])
+  items      CartItem[]
+
+  @@index([userId, id])
+}
+
+model CartItem {
+  id           Int      @id @default(autoincrement())
+  cartId       Int
+  productId    Int
+  quantity     Int      @default(1)
+  size         String?
+  colorFamily  String?
+  uuid         String   @default(uuid())
+  addedFrom    String?
+  extraProduct Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  cart         Cart     @relation(fields: [cartId], references: [id])
+  product      Product  @relation(fields: [productId], references: [id])
+
+  @@index([id, cartId])
+}
+
+model Order {
+  id             Int         @id @default(autoincrement())
+  userId         Int?
+  checkoutId     Int?
+  couponCode     String?
+  total          Float       @default(0)
+  subtotal       Float       @default(0)
+  couponDiscount Float       @default(0)
+  deliveryFee    Int         @default(0)
+  itemCount      Int         @default(1)
+  deliveryStatus String      @default("pending")
+  paymentStatus  String      @default("pending")
+  paymentMethod  String      @default("cod")
+  isEmailSend    Boolean     @default(false)
+  uuid           String      @default(cuid())
+  invoice        String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  updateAtTime   DateTime    @default(now())
+  user           User?       @relation(fields: [userId], references: [id])
+  checkout       Checkout?   @relation(fields: [checkoutId], references: [id])
+  items          OrderItem[]
+
+  @@index([userId, id])
+}
+
+model OrderItem {
+  id           Int      @id @default(autoincrement())
+  orderId      Int?
+  productId    Int?
+  actualPrice  Float    @default(0)
+  extraProduct Boolean  @default(false)
+  quantity     Int      @default(1)
+  price        Float
+  size         String?
+  colorFamily  String?
+  addedFrom    String?
+  uuid         String   @default(uuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  updateAtTime DateTime @default(now())
+  order        Order?   @relation(fields: [orderId], references: [id])
+  product      Product? @relation(fields: [productId], references: [id])
+
+  @@index([id, orderId])
+}
+
+model Coupon {
+  id                 Int           @id @default(autoincrement())
+  code               String        @unique
+  discountType       String        @default("Percentage")
+  discountValue      Float         @default(0)
+  maxUsage           Int?
+  minExpend          Int?
+  validFrom          DateTime      @default(now())
+  validTo            DateTime
+  isActive           Boolean       @default(true)
+  applicableProducts Product[]
+  usage              CouponUsage[]
+
+  @@index([id, code])
+}
+
+model CouponUsage {
+  id        Int      @id @default(autoincrement())
+  userId    Int?
+  couponId  Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  coupon    Coupon?  @relation(fields: [couponId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, id])
+}
+
+model Size {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique @db.VarChar(10)
+  status    String   @default("available") @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
+
+  @@index([id, name, status])
+}
+
+model ColorFamily {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  image     String   @db.VarChar(255)
+  status    String   @default("available") @db.VarChar(20)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
+
+  @@index([id, name, image, status])
+}
+
+model Checkout {
+  id          Int      @id @default(autoincrement())
+  user        User?    @relation(fields: [userId], references: [id])
+  userId      Int?
+  // guestUser   String?  @default(uuid())
+  username    String?  @db.VarChar(100)
+  address     String?  @db.VarChar(100)
+  district    String?  @db.VarChar(100)
+  thana       String?  @db.VarChar(100)
+  phone       String?  @db.VarChar(100)
+  email       String?  @db.VarChar(100)
+  destination String?  @default("Inside Dhaka") @db.VarChar(100)
+  uuid        String   @unique @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Order       Order[]
+
+  @@index([userId])
+}
+
+model Post {
+  id         Int            @id @default(autoincrement())
+  image      String
+  title      String
+  content    String?        @db.Text
+  published  Boolean        @default(false)
+  keywords   String?
+  meta_title String?
+  categories BlogCategory[]
+  comments   BlogComment[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?
+}
+
+model BlogCategory {
+  id        Int      @id @default(autoincrement())
+  name      String
+  posts     Post[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BlogComment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
