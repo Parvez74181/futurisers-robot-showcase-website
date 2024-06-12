@@ -1,8 +1,3 @@
-import BlockNoteTextEditor from "@/components/BlockNoteTextEditor";
-import dynamic from "next/dynamic";
-
-const Editor = dynamic(() => import("@/components/Editor"), { ssr: false });
-
 const page = () => {
   return (
     <>
@@ -41,10 +36,7 @@ const page = () => {
           </div>
         </section>
 
-        <div className="container w-[90%] mx-auto">
-          {/* <Editor /> */}
-          <BlockNoteTextEditor />
-        </div>
+     
       </main>
     </>
   );

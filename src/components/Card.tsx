@@ -17,7 +17,7 @@ const Card = ({ post }: { post: Post }) => {
         <div className="card-body">
           <h2 className="card-title dark:text-gray-400 text-gray-700">{post.title}</h2>
           <div className="card-description font-normal tracking-wider dark:text-gray-400 text-gray-700">
-            {`${htmlToText(post.content).slice(0, 135)}...`}
+            {`${htmlToText(post.content || "").slice(0, 135)}...`}
           </div>
 
           <span className="text-blue-500 hover:text-blue-600 hover:underline flex  items-center">

@@ -1,6 +1,8 @@
-import BlockNoteTextEditor from "@/components/BlockNoteTextEditor";
 import { Button } from "@/components/Button";
 import ImageUpload from "@/components/ImageUpload";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("@/components/BlockNoteTextEditor"), { ssr: false });
 
 const page = () => {
   async function createBlog(formData: FormData) {
@@ -33,7 +35,7 @@ const page = () => {
           <div className="label">
             <span className="label-text">Description</span>
           </div>
-          <BlockNoteTextEditor />
+          <Editor />
         </div>
         <Button text="Upload" />
       </form>
